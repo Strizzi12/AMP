@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace AMP {
 	class My3DPoint {
-		private float _x;
-		private float _y;
-		private float _z;
-		private string _name;
+		public float X { get; }
+		public float Y { get; }
+		public float Z { get; }
+		public string Name { get; }
 
 		public My3DPoint(string name, float x, float y, float z) {
-			_z = z;
-			_y = y;
-			_x = x;
-			_name = name;
+			Z = z;
+			Y = y;
+			X = x;
+			Name = name;
 		}
 	}
 }

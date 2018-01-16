@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,32 @@ namespace AMP {
 			}
 		}
 
-		public void CreatePointCloudFromFile() {
-			//Read line wise from file
-			//Create point for each line in file
-			//Add to list
+		public void PrintPointCloud() {
+			foreach (var point in _cloud) {
+				Console.WriteLine("\"" + point.Name + "\"," + point.X + "," + point.Y + "," + point.Z);
+			}
+		}
+
+		public void ReadPointCloudFromFile(string fileName) {
+			foreach (string line in File.ReadLines(fileName)) {
+				try {
+					//Split string at ,
+					var input = line.Split(',');
+					if (input.Length == 4) {
+						var name = input[0].Replace("\"", "");
+						var x = Helper.TransformInput<float>(input[1]);
+						var y = Helper.TransformInput<float>(input[2]);
+						var z = Helper.TransformInput<float>(input[3]);
+						_cloud.Add(new My3DPoint(name, x, y, z));
+					} else {
+						Console.WriteLine("Error! Unknown argument detected.");
+						break;
+					}
+				} catch (Exception e) {
+					Console.WriteLine(e.Message);
+					break;
+				}
+			}
 		}
 
 		private Tuple<My3DPoint, My3DPoint, float> GetMinDist() {

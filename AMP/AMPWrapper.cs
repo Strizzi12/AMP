@@ -6,12 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AMP {
-	class AMP {
-		
+	static unsafe class AMPWrapper {
 		[DllImport("AMPLib", CallingConvention = CallingConvention.StdCall)]
-		extern unsafe static void square_array(float* array, int length);
+		static extern void square_array(float* array, int length);
 
-		static unsafe void Main() {
+		public static void SquareArray() {
 			// Allocate an array
 			float[] arr = new[] { 1.0f, 2.0f, 3.0f, 4.0f };
 
@@ -20,10 +19,14 @@ namespace AMP {
 				square_array(arrPt, arr.Length);
 			}
 
-			// Enumerate the results
-			foreach (var x in arr) {
-				Console.WriteLine(x);
-			}
+		}
+
+		[DllImport("AMPLib", CallingConvention = CallingConvention.StdCall)]
+		static extern void AmpCalcDistMatrix(float* array, int length);
+
+		public static void CalcDistMatrix(PointCloud cloud)
+		{
+			//CalcDistMatrix();
 		}
 	}
 }
