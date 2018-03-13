@@ -12,10 +12,10 @@ namespace AMP {
 		private bool MoreInfo { get; set; }
 		public string Infile { get; set; }
 
-		private readonly PointCloud _pointCloud;
+		public readonly PointCloud PointCloud;
 
 		public Controller() {
-			_pointCloud = new PointCloud();
+			PointCloud = new PointCloud();
 		}
 
 		public void Terminate() {
@@ -47,6 +47,7 @@ namespace AMP {
 						continue;
 					case "-i":
 						Infile = args[i];
+						PointCloud.ReadPointCloudFromFile(Infile);
 						continue;
 					case "-g":
 						int anz = 0;
@@ -70,7 +71,7 @@ namespace AMP {
 							Console.WriteLine(e.Message);
 							break;
 						}
-						_pointCloud.CreatePointCloud(anz, dx, dy, dz);
+						PointCloud.CreatePointCloud(anz, dx, dy, dz);
 						i += 4; //Counter can be increased because the value of -g is already read.
 						continue;
 					default:

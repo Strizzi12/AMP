@@ -33,5 +33,13 @@ namespace AMP {
 		public static T TransformInput<T>(string input) {
 			return (T)Convert.ChangeType(input, typeof(T));
 		}
+
+		struct MyPoint
+		{
+			public float X { get; set; }
+			public float Y { get; set; }
+			public float Z { get; set; }
+
+		}
 	}
 }
