@@ -3,7 +3,6 @@
 #include "amp_math.h"
 #include "MyPoint.h"
 #include "MyCalculator.h"
-#include "MyResult.h"
 #include <iomanip>
 #include <iostream>
 
@@ -43,7 +42,6 @@ void MyCalculator::AmpCalcMinMaxDistances(vector<MyPoint> array)
 		parallel_for_each(result.extent, [=](index<2> idx) restrict(amp)
 		{
 			int row = idx[0];
-			//direct3d_printf("printf: the value is: %d\n", row);
 			double max = 0;
 			double min = HUGE_VAL;
 			double minIndex = -1;
